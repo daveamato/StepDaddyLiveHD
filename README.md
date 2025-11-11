@@ -17,6 +17,48 @@ A self-hosted IPTV proxy built with [Reflex](https://reflex.dev), enabling you t
 
 > ⚠️ **Important:** If you plan to use this application across your local network (LAN), you must set `API_URL` to the **local IP address** of the device hosting the server in `.env`.
 
+### Option 1: Using Pre-built Image from GHCR (Easiest)
+
+The latest container image is automatically built and published to GitHub Container Registry:
+
+```bash
+docker run -p 3000:3000 ghcr.io/gookie-dev/stepdaddylivehd:latest
+```
+
+**With custom configuration:**
+```bash
+docker run -p 3000:3000 \
+  -e API_URL=https://yourdomain.com \
+  -e PROXY_CONTENT=FALSE \
+  -e SOCKS5=user:pass@proxy.example.com:1080 \
+  ghcr.io/gookie-dev/stepdaddylivehd:latest
+```
+
+### Option 2: Using Docker Compose
+
+Update your `docker-compose.yml` to use the pre-built image:
+
+```yaml
+services:
+  step-daddy-live-hd:
+    image: ghcr.io/gookie-dev/stepdaddylivehd:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - API_URL=https://yourdomain.com
+      - PROXY_CONTENT=TRUE
+      - SOCKS5=
+    restart: unless-stopped
+```
+
+Then run:
+```bash
+docker compose up -d
+```
+
+### Option 3: Building Locally
+
 1. Make sure you have Docker and Docker Compose installed on your system.
 2. Clone the repository and navigate into the project directory:
 3. Run the following command to start the application:
@@ -29,6 +71,15 @@ Plain Docker:
 docker build -t step-daddy-live-hd .
 docker run -p 3000:3000 step-daddy-live-hd
 ```
+
+### Available Image Tags
+
+- `latest`: Most recent build from master branch
+- `stable`: Latest tagged release
+- `v1.0.0`, `v1.1.0`, etc.: Specific releases
+- `master-{commit-sha}`: Specific commits
+
+See [GITHUB_ACTIONS_USAGE.md](./GITHUB_ACTIONS_USAGE.md) for detailed CI/CD documentation.
 
 ---
 
@@ -99,6 +150,27 @@ docker run -e PROXY_CONTENT=FALSE -e API_URL=https://example.com -e SOCKS5=user:
 
 **Live Events**
 <img alt="Live Events" src="https://files.catbox.moe/7oawie.png">
+
+---
+
+## 🔄 CI/CD Pipeline
+
+This project uses GitHub Actions for automated building and publishing of container images to GitHub Container Registry (GHCR).
+
+### Features
+- **Automatic Builds**: Triggered on pushes to main branch
+- **Semantic Versioning**: Support for git tags (v1.0.0, etc.)
+- **Multi-platform**: Builds for both AMD64 and ARM64
+- **Caching**: Fast builds with GitHub Actions cache
+- **Security**: Uses GitHub's built-in authentication
+
+### Workflow Triggers
+- Push to `master` branch → builds `:latest` tag
+- Git tags (e.g., `v1.0.0`) → builds release versions
+- Pull requests → builds for testing
+- Manual dispatch → on-demand builds
+
+For detailed documentation, see [GITHUB_ACTIONS_USAGE.md](./GITHUB_ACTIONS_USAGE.md).
 
 ---
 
