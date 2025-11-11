@@ -12,7 +12,7 @@ The project includes two GitHub Actions workflows:
 ## Workflow Triggers
 
 ### Automatic Builds
-- **Push to master**: Automatically builds and publishes `:latest` tag
+- **Push to main**: Automatically builds and publishes `:latest` tag
 - **Pull requests**: Builds for testing (doesn't publish)
 - **Git tags**: Creates release versions when tags like `v1.0.0` are pushed
 
@@ -22,8 +22,8 @@ You can also trigger builds manually from the GitHub Actions tab in your reposit
 ## Versioning Strategy
 
 ### Tags Generated
-- `latest`: Always points to the most recent successful build from master branch
-- `master-{commit-sha}`: Unique identifier for each commit
+- `latest`: Always points to the most recent successful build from main branch
+- `main-{commit-sha}`: Unique identifier for each commit
 - `v1.0.0`, `v1.1.0`, etc.: Semantic version tags from git tags
 - `v1.0`, `v1.1`, etc.: Major.minor versions from git tags
 - `stable`: Points to the latest tagged release

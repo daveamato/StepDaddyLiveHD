@@ -74,7 +74,7 @@ docker run -p 3000:3000 step-daddy-live-hd
 
 ### Available Image Tags
 
-- `latest`: Most recent build from master branch
+- `latest`: Most recent build from main branch
 - `stable`: Latest tagged release
 - `v1.0.0`, `v1.1.0`, etc.: Specific releases
 - `master-{commit-sha}`: Specific commits
@@ -165,7 +165,7 @@ This project uses GitHub Actions for automated building and publishing of contai
 - **Security**: Uses GitHub's built-in authentication
 
 ### Workflow Triggers
-- Push to `master` branch → builds `:latest` tag
+- Push to `main` branch → builds `:latest` tag
 - Git tags (e.g., `v1.0.0`) → builds release versions
 - Pull requests → builds for testing
 - Manual dispatch → on-demand builds
