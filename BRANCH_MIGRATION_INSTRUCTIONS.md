@@ -59,7 +59,7 @@ git fetch upstream
 git checkout main
 
 # Merge upstream changes into your main
-git merge upstream/main
+git merge upstream/master
 
 # Push the synced changes to your fork
 git push origin main
