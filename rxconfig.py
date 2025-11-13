@@ -6,7 +6,7 @@ import socket
 ipaddr = socket.gethostbyname(socket.gethostname())
 proxy_content = os.environ.get("PROXY_CONTENT", "TRUE").upper() == "TRUE"
 socks5 = os.environ.get("SOCKS5", "")
-port = os.environ.get("PORT", "8000")
+port = os.environ.get("PORT", "3000")
 
 print(f"PROXY_CONTENT: {proxy_content}\nSOCKS5: {socks5}")
 
