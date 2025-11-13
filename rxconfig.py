@@ -1,6 +1,7 @@
 import reflex as rx
 import os
 import socket
+import encodings.idna
 
 
 ipaddr = socket.gethostbyname(socket.gethostname())
